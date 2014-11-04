@@ -40,12 +40,12 @@ This Readme file leads you through the installation process and shows which depe
 The following steps need to be done before you can use the pannacotta voucher app. Please make sure you install
 the proper versions so that the system works as expected.
 
-1. Install RMagick
+* Install RMagick
 
   sudo apt-get install imagemagick libmagickwand-dev
 
 
-2. Install phantomjs-1.9.2
+* Install phantomjs-1.9.2
 
 2.1 Download: +sudo wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2+
 2.2 extract the folder with +tar jxf foldername+
@@ -54,7 +54,7 @@ the proper versions so that the system works as expected.
 2.5 Check path of phantomjs use +which phantomjs+ should give "/bin/phantomjs"
 
 
-3. Install Yard Documentation
+* Install Yard Documentation
 
 3.1 Run:
     yard config load_plugins true
@@ -63,7 +63,7 @@ the proper versions so that the system works as expected.
 3.3 Open browser to see the documentation: e.g http://0.0.0.0:8808
 
 
-4. Enable MySQL TimeZone Support
+* Enable MySQL TimeZone Support
 
 To make the charts working with groupdate gem you need to activate Time Zone Support on mysql
   mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql+
@@ -71,7 +71,7 @@ and
   service mysql restart
 
 
-5. Install Elastic Search
+* Install Elastic Search
 
   sudo apt-get update
   sudo apt-get install openjdk-7-jre-headless -y
@@ -81,22 +81,22 @@ and
 
 Test it with +curl http://localhost:9200
 
-6. Install Redis
+* Install Redis
 
   sudo apt-get install redis-server
-
-7. Environment
+  
+* Environment
 
 Please run the application under the "development" environment, as it has not been fully tested with other environemnts until now. (03/03/2014)
 
-8. Patron Gem errors
+* Patron Gem errors
 
 to get the latest version of libcurl run this
-  +apt-get install libcurl4-gnutls-dev+
+  apt-get install libcurl4-gnutls-dev
 and then
-  +bundle update+
-
-9. ImageUpload to Amazon S3 config / Redis config
+  bundle update
+  
+* ImageUpload to Amazon S3 config / Redis config
 
 In development enviroment you need a services.yml file in the config directory. There is a example.services.yml file there.
 In production all those variables needs to be set in the ENV Variables (see config/initializers/fog.rb).
