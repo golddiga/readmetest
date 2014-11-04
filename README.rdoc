@@ -8,9 +8,7 @@ This Readme file leads you through the installation process and shows which depe
 
   +git clone https://user.name@stash.couponcrew.net:8443/scm/dar/pannacotta.git pannacotta; cd pannacotta+
 
-2. run +'bundle install'+ to install all required gems
-
-2. run +bundle install+ to install all required gems
+2. run +bundle+install+ to install all required gems
 
 3. Configure Database in +config/databases.yml+
 
