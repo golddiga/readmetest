@@ -31,8 +31,7 @@ This Readme file leads you through the installation process and shows which depe
 
 8. Visit the backend
 
-  +http://localhost:3000/pcadmin/users/sign_in*
-
+  http://localhost:3000/pcadmin/users/sign_in
 
 
 = \Dependencies
@@ -40,12 +39,11 @@ This Readme file leads you through the installation process and shows which depe
 The following steps need to be done before you can use the pannacotta voucher app. Please make sure you install
 the proper versions so that the system works as expected.
 
-== Install RMagick
+== 1. Install RMagick
 
   sudo apt-get install imagemagick libmagickwand-dev
 
-
-== Install phantomjs-1.9.2
+== 2. Install phantomjs-1.9.2
 
 2.1 Download: +sudo wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2+
 2.2 extract the folder with +tar jxf foldername+
@@ -54,7 +52,7 @@ the proper versions so that the system works as expected.
 2.5 Check path of phantomjs use +which phantomjs+ should give "/bin/phantomjs"
 
 
-== Install Yard Documentation
+== 3. Install Yard Documentation
 
 3.1 Run:
     yard config load_plugins true
@@ -63,15 +61,14 @@ the proper versions so that the system works as expected.
 3.3 Open browser to see the documentation: e.g http://0.0.0.0:8808
 
 
-== Enable MySQL TimeZone Support
+== 4. Enable MySQL TimeZone Support
 
 To make the charts working with groupdate gem you need to activate Time Zone Support on mysql
   mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql+
 and
   service mysql restart
 
-
-== Install Elastic Search
+== 5. Install Elastic Search
 
   sudo apt-get update
   sudo apt-get install openjdk-7-jre-headless -y
@@ -81,22 +78,22 @@ and
 
 Test it with +curl http://localhost:9200
 
-== Install Redis
+== 6. Install Redis
 
   sudo apt-get install redis-server
 
-== Environment
+== 7. Environment
 
 Please run the application under the "development" environment, as it has not been fully tested with other environemnts until now. (03/03/2014)
 
-== Patron Gem errors
+== 8. Patron Gem errors
 
 to get the latest version of libcurl run this
   apt-get install libcurl4-gnutls-dev
 and then
   bundle update
 
-== ImageUpload to Amazon S3 config / Redis config
+== 9. ImageUpload to Amazon S3 config / Redis config
 
 In development enviroment you need a services.yml file in the config directory. There is a example.services.yml file there.
 In production all those variables needs to be set in the ENV Variables (see config/initializers/fog.rb).
