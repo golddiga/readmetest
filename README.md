@@ -1,2 +1,119 @@
-readmetest
-==========
+= \Pannacotta Voucher App
+
+This Readme file leads you through the installation process and shows which dependencies need to be installed
+
+== Installation
+
+## 1. Clone Repository
+
+  +git clone https://user.name@stash.couponcrew.net:8443/scm/dar/pannacotta.git pannacotta; cd pannacotta+
+
+## 2. run +bundle install+ to install all required gems
+
+## 3. Configure Database in +config/databases.yml+
+
+## 4. Create a +config/services.yml+ file from +config/example.services.yml+ and configure with your amazon credentials
+
+## 5. Create a +config/asset_sync.yml+ file from +config/example.asset_sync.yml+ and configure
+
+## 6. Setup the database and run the migrations
+
+  +rake db:create+
+  +rake db:migrate+
+  +rake db:seed+
+
+  in case any error occured during the process (which should as it was tested) try to fix the error and run
+  +rake db:reset+
+
+## 7. Start the Rails Server
+
+  +rails s+
+
+## 8. Visit the backend
+
+  +http://localhost:3000/pcadmin/users/sign_in*
+
+
+
+== Dependencies
+
+The following steps need to be done before you can use the pannacotta voucher app. Please make sure you install
+the proper versions so that the system works as expected.
+
+## 1. Install RMagick
+
+  +sudo apt-get install imagemagick libmagickwand-dev+
+
+
+## 2. Install phantomjs-1.9.2
+
+  2.1 Download: +sudo wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2+
+  2.2 extract the folder with +tar jxf foldername+
+  2.3 +cp foldername/bin/phantomjs /usr/bin/+
+  2.4 Check version of +phantomjs --version+ should be 1.9.2
+  2.5 Check path of phantomjs use +which phantomjs+ should give "/bin/phantomjs"
+
+
+## 3 Install Yard Documentation
+
+  3.1 Run:
+      +yard config load_plugins true+
+  3.2 Start the yard server to parse the files for creating the documentation:
+      +yard server --reload+
+  3.3 Open browser to see the documentation: e.g http://0.0.0.0:8808
+
+
+## 4. Enable MySQL TimeZone Support
+
+  To make the charts working with groupdate gem you need to activate Time Zone Support on mysql
+    +mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql+
+  and
+    +service mysql restart+
+
+
+## 5. Install Elastic Search
+
+  +sudo apt-get update+
+  +sudo apt-get install openjdk-7-jre-headless -y+
+  +cd+
+  +wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.11.deb+
+  +sudo dpkg -i elasticsearch-0.90.11.deb+
+  Test it with +curl http://localhost:9200+
+
+## 6. Install Redis
+
+  +sudo apt-get install redis-server+
+
+## 7. Environment
+
+  Please run the application under the "development" environment, as it has not been fully tested with other environemnts until now. (03/03/2014)
+
+## 8. Patron Gem errors
+
+  to get the latest version of libcurl run this
+    +apt-get install libcurl4-gnutls-dev+
+  and then
+    +bundle update+
+
+## 9. ImageUpload to Amazon S3 config / Redis config
+
+  In development enviroment you need a services.yml file in the config directory. There is a example.services.yml file there.
+  In production all those variables needs to be set in the ENV Variables (see config/initializers/fog.rb).
+  The same yaml file is used to setup Redis variables for the production environment (redis_server, redis_port - see config/application.rb)
+
+
+== Hints
+
+## For the frontend dont use url_for anymore
+
+instead of:
+  url_for controller: 'coupons', action: 'index', type: 'top'
+
+use:
+  dynamic_url_for 'coupons', 'index', type: top
+
+This is because url_for doesnt recognize our routes for the different sites
+
+
+## Required
+
